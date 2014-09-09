@@ -15,12 +15,12 @@ class DocumentsController extends \Illuminate\Routing\Controller
 
     public function getIndex()
     {
-
+        return \View::make('inception::visualization.dashboard');
     }
 
     public function postDocument()
     {
-        $client = \Doctrine\CouchDB\CouchDBClient::create(\Config::get('inception::config'));
+
 
 
     }

@@ -1,7 +1,9 @@
 <?php namespace Marabooyankee\Inception;
 
+use Elasticsearch\Client;
 use Illuminate\Support\ServiceProvider;
 use Marabooyankee\Inception\Commands\DataImporter;
+use Marabooyankee\Inception\Commands\PhotosImporter;
 use Marabooyankee\Inception\Commands\SetupInception;
 
 class InceptionServiceProvider extends ServiceProvider
@@ -29,6 +31,9 @@ class InceptionServiceProvider extends ServiceProvider
         $this->app->bind('inception:setup-command', function () {
             return new SetupInception();
         });
+        $this->app->bind('inception:photo-importer-command', function () {
+            return new PhotosImporter();
+        });
 
 
         $this->app->singleton('inception:cloudant-client', function () {
@@ -39,6 +44,10 @@ class InceptionServiceProvider extends ServiceProvider
         $this->app->singleton('inception:elastic-client', function () {
             return new \Elasticsearch\Client(\Config::get('inception::elasticsearch'));
 
+        });
+
+        $this->app->bind('Elasticsearch\Client', function () {
+            return app('inception:elastic-client');
         });
 
         $this->package('marabooyankee/inception');
@@ -54,7 +63,7 @@ class InceptionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->commands(array('inception:data-importer-command', 'inception:setup-command'));
+        $this->commands(array('inception:data-importer-command', 'inception:photo-importer-command', 'inception:setup-command'));
     }
 
 

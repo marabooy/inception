@@ -77,17 +77,36 @@ class SetupInception extends Command
 
         );
 
+        $photoMapping = array(
+            'photo' => [
+                'properties' => [
+                    'date' => [
+                        'type' => 'date'
+                    ],
+                    'url' => [
+                        'type' => 'string'
+                    ],
+                    'location' => [
+                        'type' => 'geo_shape',
+                        "tree" => 'quadtree',
+                        'precision' => '1m'
+                    ]
+                ]
+            ]
+        );
+
+
         $index = [
             'index' => 'csv_dump',
-            'body' => [
-                'mappings' => $mappings
-
-            ]
+            'type' => 'csv',
+            'body' => $mappings
         ];
 
-        $elasticClient->indices()->delete(['index' => 'csv_dump']);
+        $elasticClient->indices()->putMapping($index);
 
-        $elasticClient->indices()->create($index);
+//        $elasticClient->indices()->delete(['index' => 'csv_dump']);
+
+//        $elasticClient->indices()->create($index);
     }
 
     /**

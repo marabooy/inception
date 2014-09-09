@@ -82,14 +82,14 @@ class DataImporter extends Command
 
     }
 
-    public function saveToElastic(array $data,$path)
+    public function saveToElastic(array $data, $path)
     {
-        /**@var Client $elasticClient*/
+        /**@var Client $elasticClient */
         $elasticClient = app('inception:elastic-client');
 
-        $request= array('body'=>$data);
-        $request['index']='csv_dump';
-        $request['type']= 'csv';
+        $request = array('body' => $data);
+        $request['index'] = 'csv_dump';
+        $request['type'] = 'csv';
         $elasticClient->index($request);
 
     }
@@ -103,11 +103,11 @@ class DataImporter extends Command
     {
         $path = storage_path();
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path . '\data'), \RecursiveIteratorIterator::SELF_FIRST);
-        /**@var \SplFileInfo $filePath*/
-        foreach ($iterator as  $filePath) {
+        /**@var \SplFileInfo $filePath */
+        foreach ($iterator as $filePath) {
             if (!$filePath->isDir()) {
-
-
+                if($filePath->getExtension()!=='csv')
+                    continue;
                 $csvreader = new Reader(new \SplFileObject($filePath->__toString()));
                 $csvreader->setDelimiter(';');
                 $headerRow = $csvreader->fetchOne(1);
@@ -117,14 +117,46 @@ class DataImporter extends Command
                 $lngIndex = $this->getIndex('location longitude :', $headers);
                 $timestamp = $this->getIndex('yyyy-mo-dd hh-mi-ss_sss', $headers);
                 $cumulativeTime = $this->getIndex('time since start in ms', $headers);
+                $accelerometerX = $this->getIndex('accelerometer x', $headers);
+                $accelerometerY = $this->getIndex('accelerometer y', $headers);
+                $accelerometerZ = $this->getIndex('accelerometer z', $headers);
+                $locationSpeed = $this->getIndex('location speed', $headers);
+                $gyroscopeX = $this->getIndex('gyroscope x', $headers);
+                $gyroscopeY = $this->getIndex('gyroscope y', $headers);
+                $gyroscopeZ = $this->getIndex('gyroscope z', $headers);
 
                 $locationIndexes = array($lngIndex, $latIndex);
-                $propertyIndexes = array($timestamp, $cumulativeTime);
-                $propertyNames = array('timestamps', 'cumulative_time');
+                $propertyIndexes = array(
+                    $timestamp,
+                    $cumulativeTime,
+                    $accelerometerX,
+                    $accelerometerY,
+                    $accelerometerZ,
+                    $locationSpeed,
+                    $gyroscopeX,
+                    $gyroscopeY,
+                    $gyroscopeZ
+                );
+                $propertyNames = array(
+                    'timestamps',
+                    'cumulative_time',
+                    'accelerometer_x',
+                    'accelerometer_y',
+                    'accelerometer_z',
+                    'speed',
+                    'gyroscope_x',
+                    'gyroscope_y',
+                    'gyroscope_z'
+                );
+                \Log::debug('filename',[$filePath->__toString()]);
+                \Log::debug('headers', $headerRow);
+                \Log::debug('indexes', $propertyIndexes);
+                \Log::debug('names', $propertyNames);
                 $geoJson = new Csv2GeoJson($csvreader, $propertyIndexes, $propertyNames, $locationIndexes);
 
                 $geoJson->convert();
-                $this->saveToElastic($geoJson->toArray(),$filePath->getFilename());
+                \Log::debug('csv', $geoJson->toArray());
+                $this->saveToElastic($geoJson->toArray(), $filePath->getFilename());
 
 
 //                print($filePath->__toString() . PHP_EOL);
@@ -141,7 +173,6 @@ class DataImporter extends Command
     protected function getArguments()
     {
         return array(
-            array('file', InputArgument::OPTIONAL, 'An example argument.'),
         );
     }
 
@@ -153,7 +184,6 @@ class DataImporter extends Command
     protected function getOptions()
     {
         return array(
-            array('path', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
         );
     }
 

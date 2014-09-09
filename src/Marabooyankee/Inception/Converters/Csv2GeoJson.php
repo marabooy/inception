@@ -67,8 +67,6 @@ class Csv2GeoJson
             return true;
         });
 
-        print_r(count($this->coordinates));
-
 
     }
 

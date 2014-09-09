@@ -7,4 +7,7 @@
  */
 
 
-Route::controller('inception','Marabooyankee\Inception\Controllers\DocumentsController');
+
+Route::controller('search','Marabooyankee\Inception\Controllers\SearchController');
+Route::controller('/','Marabooyankee\Inception\Controllers\DocumentsController');
+
