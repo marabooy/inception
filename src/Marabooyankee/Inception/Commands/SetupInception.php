@@ -95,11 +95,23 @@ class SetupInception extends Command
             ]
         );
 
+        $videoMapping = array(
+            'video' => [
+                'properties' => [
+                    'geometry' => [
+                        'type' => 'geo_shape',
+                        "tree" => 'quadtree',
+                        'precision' => '1m'
+                    ]
+                ]
+            ]
+        );
+
 
         $index = [
             'index' => 'csv_dump',
-            'type' => 'csv',
-            'body' => $mappings
+            'type' => 'video',
+            'body' => $videoMapping
         ];
 
         $elasticClient->indices()->putMapping($index);

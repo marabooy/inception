@@ -79,7 +79,7 @@ class PhotosImporter extends Command
 //                    'date' => $timeStamp->toDateTimeString(),
                     'location' => [
                         'type' => 'point',
-                        'coordinates' => [$lng, $lat]
+                        'coordinates' => [floatval($lng), floatval($lat)]
                     ],
                     'url' => $fileName
                 );
@@ -100,7 +100,7 @@ class PhotosImporter extends Command
         $request['index'] = 'csv_dump';
         $request['type'] = 'photo';
 //        dd($request);
-         $elasticClient->index($request);
+        $elasticClient->index($request);
 
     }
 

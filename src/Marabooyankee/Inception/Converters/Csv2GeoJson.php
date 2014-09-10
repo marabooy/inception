@@ -75,7 +75,7 @@ class Csv2GeoJson
     {
         $lng = $row[$this->locationIndexes[0]];
         $lat = $row[$this->locationIndexes[1]];
-        array_push($this->coordinates, [$lng, $lat]);
+        array_push($this->coordinates, [floatval($lng), floatval($lat)]);
     }
 
     public function extractProperties($row)

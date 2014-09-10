@@ -48,6 +48,13 @@ Visualization
                                     </div>
                         </div>
               </div>
+               <div class="panel panel-default">
+                     <div class="panel-heading">Speed</div>
+                        <div class="panel-body">
+                                    <div id="speed">
+                                    </div>
+                        </div>
+              </div>
         </div>
     </div>
 
