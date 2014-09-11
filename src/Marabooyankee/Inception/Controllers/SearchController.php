@@ -81,7 +81,9 @@ class SearchController extends Controller
 
         $props = $document['_source']['properties'];
         $dims = array_keys($props);
-        $dims = array_filter($dims,function($dim)use ($props){return is_array($props[$dim]);});
+        $dims = array_filter($dims, function ($dim) use ($props) {
+                return is_array($props[$dim]);
+            });
 
 //        dd($dims);
 
@@ -96,13 +98,21 @@ class SearchController extends Controller
 
             foreach ($dims as $dim) {
 //                echo $dim.PHP_EOL;
-                $row[$dim]=$props[$dim][$i];
+                $row[$dim] = $props[$dim][$i];
             }
-            array_push($userDims,$row);
+            array_push($userDims, $row);
         }
 
         return $userDims;
 
 
+    }
+
+    public function getGeoJson($type, $id)
+    {
+        $index = array('index' => 'csv_dump', 'type' => $type, 'id' => $id);
+
+        $document = (array)$this->client->get($index);
+        return $document;
     }
 } 
