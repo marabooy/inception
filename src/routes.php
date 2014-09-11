@@ -10,5 +10,6 @@
 
 Route::controller('search','Marabooyankee\Inception\Controllers\SearchController');
 Route::get('playback/{id}','Marabooyankee\Inception\Controllers\DocumentsController@getPlayBack');
+Route::get('playback/{id}','Marabooyankee\Inception\Controllers\DocumentsController@getPlayBack');
 Route::controller('/','Marabooyankee\Inception\Controllers\DocumentsController');
 

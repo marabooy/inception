@@ -19,6 +19,10 @@
 
 <script>
 
+$.get('/find-videos/eqwYnbPATlebDatNU9VYWQ',function(v){
+    console.log(v);
+});
+
     var markers =[];
     var map = L.map('map').setView([36.8167, -1.2833], 8);
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
