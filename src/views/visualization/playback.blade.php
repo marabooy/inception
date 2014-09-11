@@ -60,5 +60,4 @@ var geoJson = <?php echo json_encode( $geoJson) ?>;
 <script src="/app/js/playback.js"></script>
 
 
-
 @stop
