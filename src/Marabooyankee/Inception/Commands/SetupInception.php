@@ -138,8 +138,11 @@ class SetupInception extends Command
             'body' => $photoMapping
         ];
 
+        $elasticClient->indices()->create(['index'=>'csv_dump']);
 
         $elasticClient->indices()->putMapping($index);
+        $elasticClient->indices()->putMapping(['index'=>'csv_dump','type'=>'csv','body'=>$mappings]);
+        $elasticClient->indices()->putMapping(['index'=>'csv_dump','type'=>'video','body'=>$videoMapping]);
 
 //        $elasticClient->indices()->delete(['index' => 'csv_dump']);
 
