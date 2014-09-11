@@ -27,7 +27,7 @@
 
                      </div>
                      <div id="accelerometer-chart">
-                           <div id="chart" width="100%" height="300px"></div>
+                           <div id="chart" style="height: 300px; width: 100%;"></div>
                          {{--<canvas id="accelerometer" height="120px" width="250px"></canvas>--}}
                      </div>
                  </div>
@@ -40,7 +40,7 @@
 
                      </div>
                      <div id="speed-chart">
-                         <canvas id="speed" height="120px" width="250px"></canvas>
+                         <div id="speed" style="height: 300px; width: 100%;"></div>
                      </div>
                  </div>
 
