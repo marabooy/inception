@@ -70,7 +70,18 @@ class SetupInception extends Command
                         "tree" => 'quadtree',
                         'precision' => '1m'
 
-
+                    ],
+                    "properties" => [
+                        "properties" => [
+                            "start_time" => [
+                                "type" => 'date',
+                                "format" => "YYYY-MM-DD HH:mm:ss"
+                            ],
+                            "end_time" => [
+                                "type" => 'date',
+                                "format" => "YYYY-MM-DD HH:mm:ss"
+                            ]
+                        ]
                     ]
                 ]
             ]
@@ -81,7 +92,8 @@ class SetupInception extends Command
             'photo' => [
                 'properties' => [
                     'date' => [
-                        'type' => 'date'
+                        "type" => 'date',
+                        "format" => "YYYY-MM-DD HH:mm:ss"
                     ],
                     'url' => [
                         'type' => 'string'
@@ -102,6 +114,18 @@ class SetupInception extends Command
                         'type' => 'geo_shape',
                         "tree" => 'quadtree',
                         'precision' => '1m'
+                    ],
+                    "properties" => [
+                        "properties" => [
+                            "start_time" => [
+                                "type" => 'date',
+                                "format" => "YYYY-MM-DD HH:mm:ss"
+                            ],
+                            "end_time" => [
+                                "type" => 'date',
+                                "format" => "YYYY-MM-DD HH:mm:ss"
+                            ]
+                        ]
                     ]
                 ]
             ]
@@ -110,9 +134,10 @@ class SetupInception extends Command
 
         $index = [
             'index' => 'csv_dump',
-            'type' => 'video',
-            'body' => $videoMapping
+            'type' => 'photo',
+            'body' => $photoMapping
         ];
+
 
         $elasticClient->indices()->putMapping($index);
 

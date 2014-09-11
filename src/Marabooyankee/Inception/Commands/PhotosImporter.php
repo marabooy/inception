@@ -76,7 +76,7 @@ class PhotosImporter extends Command
                 echo($lat);
 
                 $photo = array(
-//                    'date' => $timeStamp->toDateTimeString(),
+                    'date' => $timeStamp->toDateTimeString(),
                     'location' => [
                         'type' => 'point',
                         'coordinates' => [floatval($lng), floatval($lat)]

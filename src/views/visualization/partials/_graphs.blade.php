@@ -27,7 +27,8 @@
 
                      </div>
                      <div id="accelerometer-chart">
-                         <canvas id="accelerometer" height="120px" width="250px"></canvas>
+                           <div id="chart" width="100%" height="300px"></div>
+                         {{--<canvas id="accelerometer" height="120px" width="250px"></canvas>--}}
                      </div>
                  </div>
 

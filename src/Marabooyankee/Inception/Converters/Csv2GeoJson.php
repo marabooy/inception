@@ -89,6 +89,14 @@ class Csv2GeoJson
         }
     }
 
+    protected function properties()
+    {
+        $properties= $this->properties;
+        $properties['start_date']=array_shift($properties['timestamps']);
+        $properties['end_date']=array_pop($properties['timestamps']);
+        return $properties;
+    }
+
     public function toArray()
     {
         return array(
@@ -97,7 +105,7 @@ class Csv2GeoJson
                 'type' => 'multipoint',
                 'coordinates' => $this->coordinates
             ),
-            'properties' => $this->properties
+            'properties' => $this->properties()
         );
     }
 

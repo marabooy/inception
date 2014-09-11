@@ -24,7 +24,7 @@ class DataImporter extends Command
      *
      * @var string
      */
-    protected $name = 'inception:import';
+    protected $name = 'inception:csv';
 
     protected $requiredFields = array('location latitude :', 'location longitude');
 
@@ -146,7 +146,7 @@ class DataImporter extends Command
                     'speed',
                     'gyroscope_x',
                     'gyroscope_y',
-                    'gyroscope_z'
+                    'gyroscope_z',
                 );
                 \Log::debug('filename',[$filePath->__toString()]);
                 \Log::debug('headers', $headerRow);

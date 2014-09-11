@@ -10,7 +10,7 @@
 
 {{--@todo create a gulp task to minify all this and have a more optimized css head--}}
     <!-- Loading Bootstrap -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
     <link href="/hm/css/flat-ui.css" rel="stylesheet">
