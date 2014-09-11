@@ -32,7 +32,7 @@ Visualization
                     <div class="panel-body">
                         <div id="results">
                         <ul class="list-unstyled"></ul>
-                        <span class="lead text-center">No Data</span>
+                        <span class="lead text-center no-data">No Data</span>
                         </div>
 
                     </div>
@@ -41,17 +41,21 @@ Visualization
     </div>
     <div class="row padding-30">
         <div class="col-md-12">
-              <div class="panel panel-default">
-                     <div class="panel-heading">Accelerometer</div>
+              <div class="panel panel-default col-md-6">
                         <div class="panel-body">
-                                    <div id="chart">
+                                    <div id="chart" style="width: 100%; height: 300px">
                                     </div>
                         </div>
               </div>
-               <div class="panel panel-default">
-                     <div class="panel-heading">Speed</div>
+               <div class="panel panel-default col-md-6">
                         <div class="panel-body">
-                                    <div id="speed">
+                                    <div id="speed" style="width: 100%; height: 300px">
+                                    </div>
+                        </div>
+              </div>
+              <div class="panel panel-default">
+                        <div class="panel-body">
+                                    <div id="gyro" style="width: 100%; height: 300px">
                                     </div>
                         </div>
               </div>
@@ -64,9 +68,11 @@ Visualization
 
 @section('scripts')
 @parent
-<script src="/bower_components/d3/d3.js"></script>
-<script src="/bower_components/crossfilter/crossfilter.js"></script>
-<script src="/bower_components/dcjs/dc.js"></script>
+{{--<script src="/bower_components/d3/d3.js"></script>--}}
+{{--<script src="/bower_components/crossfilter/crossfilter.js"></script>--}}
+{{--<script src="/bower_components/dcjs/dc.js"></script>--}}
+<script src="/bower_components/moment/moment.js"></script>
+<script src="/app/js/canvasjs.min.js"></script>
 <script src="/bower_components/nprogress/nprogress.js"></script>
 <script src="/bower_components/leaflet/dist/leaflet.js"></script>
 <script src="/app/js/dashboard.graphs.js"></script>

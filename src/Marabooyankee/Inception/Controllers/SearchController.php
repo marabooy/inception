@@ -81,15 +81,21 @@ class SearchController extends Controller
 
         $props = $document['_source']['properties'];
         $dims = array_keys($props);
+        $dims = array_filter($dims,function($dim)use ($props){return is_array($props[$dim]);});
+
+//        dd($dims);
 
         $dimLength = count($props[$dims[0]]);
 
         $userDims = array();
+//        dd($dimLength);
 
         for ($i = 0; $i < $dimLength; $i++) {
             $row = array();
+//            echo $i.PHP_EOL;
 
             foreach ($dims as $dim) {
+//                echo $dim.PHP_EOL;
                 $row[$dim]=$props[$dim][$i];
             }
             array_push($userDims,$row);
