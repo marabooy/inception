@@ -13,7 +13,7 @@
     <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
-    <link href="/hm/css/flat-ui.css" rel="stylesheet">
+    <link href="/bower_components/flat-ui/dist/css/flat-ui.min.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="images/favicon.ico">
     <link href="/bower_components/leaflet/dist/leaflet.css" rel="stylesheet" type="text/css"/>
@@ -55,10 +55,9 @@
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/hm/app/request-animation-polyfill.js"></script>
 <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/hm/js/flatui-checkbox.js"></script>
-<script src="/hm/js/flatui-radio.js"></script>
-<script src="/hm/js/jquery.tagsinput.js"></script>
-<script src="/hm/js/jquery.placeholder.js"></script>
+<script src="/bower_components/flat-ui/dist/js/flat-ui.min.js"></script>
+{{--<script src="/hm/js/jquery.tagsinput.js"></script>--}}
+{{--<script src="/hm/js/jquery.placeholder.js"></script>--}}
 <script src="/bower_components/headroom.js/dist/headroom.js"></script>
 <script src="/bower_components/headroom.js/dist/jQuery.headroom.js"></script>
 <script>
