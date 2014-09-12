@@ -41,10 +41,10 @@ class InceptionServiceProvider extends ServiceProvider
         });
 
 
-        $this->app->singleton('inception:cloudant-client', function () {
-            return \Doctrine\CouchDB\CouchDBClient::create(\Config::get('inception::config'));
-
-        });
+//        $this->app->singleton('inception:cloudant-client', function () {
+//            return \Doctrine\CouchDB\CouchDBClient::create(\Config::get('inception::config'));
+//
+//        });
 
         $this->app->singleton('inception:elastic-client', function () {
             return new \Elasticsearch\Client(\Config::get('inception::elasticsearch'));
