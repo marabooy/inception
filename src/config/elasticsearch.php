@@ -10,8 +10,7 @@
 
 return array(
     'hosts' => array(
-        'localhost:9200',
-        'homestead.app:9200',
+        'localhost:9200'
     ),
     'logging'=>'true'
 );
