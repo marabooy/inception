@@ -14,7 +14,7 @@ Playback Mode
 @section('body')
 
     <div class="row padding-30">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Map</div>
                 <div class="panel-body">
@@ -24,19 +24,7 @@ Playback Mode
 
             </div>
         </div>
-        <div class="col-md-3">
-                    {{--sidebar here--}}
 
-            <div class="panel panel-default">
-                 <div class="panel-heading">Gauges</div>
-                    <div class="panel-body">
-                        <div id="results">
-                        <ul class="list-unstyled"></ul>
-                        </div>
-
-                    </div>
-            </div>
-         </div>
     </div>
 
     @include('inception::visualization.partials._graphs')
