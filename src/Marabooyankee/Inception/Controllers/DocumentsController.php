@@ -48,6 +48,8 @@ class DocumentsController extends \Illuminate\Routing\Controller
         return \View::make('inception::visualization.dashboard');
     }
 
+
+
     public function getPLayBack($id)
     {
         /**@var Client $elasticClient */
