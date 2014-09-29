@@ -76,6 +76,20 @@ Visualization
 <script src="/bower_components/nprogress/nprogress.js"></script>
 <script src="/bower_components/leaflet/dist/leaflet.js"></script>
 <script src="/app/js/dashboard.graphs.js"></script>
+<script>
+
+function findObjects(id) {
+
+    var url = '/find-objects/photo/'+id;
+    var eventSource = new EventSource(url);
+
+    eventSource.onmessage =function(e){
+        console.log(e);
+        console.log("found some source");
+    };
+    console.log("sources");
+}
+</script>
 <script src="/app/js/dashboard.js"></script>
 
 @stop

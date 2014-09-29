@@ -19,7 +19,8 @@ class DocumentsController extends \Illuminate\Routing\Controller
     public function __construct()
     {
         $this->cachedQuery = [
-            "_source" => false,
+//            "_source" => false,
+            '_source' => ['properties.*'],
             "query" => [
                 "filtered" => [
                     "query" => [
@@ -28,9 +29,9 @@ class DocumentsController extends \Illuminate\Routing\Controller
                     ,
                     "filter" => [
                         "geo_shape" => [
-                            "geometry" => [
-                                "shape" => array()
-                            ]
+//                            "geometry" => [
+//                                "shape" => array()
+//                            ]
                         ]
                     ]
                 ]
@@ -49,7 +50,6 @@ class DocumentsController extends \Illuminate\Routing\Controller
     }
 
 
-
     public function getPLayBack($id)
     {
         /**@var Client $elasticClient */
@@ -62,10 +62,10 @@ class DocumentsController extends \Illuminate\Routing\Controller
     }
 
 
-    public function getFindVideos($id)
+    public function getFindObjects($type, $id)
     {
 
-        $streamedResponse = \Response::stream(function () use ($id) {
+        $streamedResponse = \Response::stream(function () use ($id, $type) {
 
             /**
              * "indexed_shape": {
@@ -75,6 +75,7 @@ class DocumentsController extends \Illuminate\Routing\Controller
              * "path":"geometry"
              * }
              */
+            sleep(1);
             $shape = [
                 'indexed_shape' => [
                     'id' => $id,
@@ -86,25 +87,34 @@ class DocumentsController extends \Illuminate\Routing\Controller
 
             $query = $this->cachedQuery;
 
+            if ($type == 'photo') {
 
-            array_set($query, 'query.filtered.filter.geo_shape.geometry', $shape);
+                array_set($query, '_source', true);
+//                unset($query['_source']);
+                array_set($query, 'query.filtered.filter.geo_shape.location', $shape);
+
+
+            } else {
+                array_set($query, 'query.filtered.filter.geo_shape.geometry', $shape);
+            }
 
             $elasticClient = app('inception:elastic-client');
             $param = [
                 'index' => 'csv_dump',
-                'type' => 'video',
+                'type' => $type,
                 'body' => $query
             ];
 
-//        return $query;
-            echo json_encode($elasticClient->search($param)).PHP_EOL;
+            echo json_encode($elasticClient->search($param)) . PHP_EOL.PHP_EOL;
 
             ob_flush();
             flush();
-        });
-
+        },200,array('content-type'=>'text/event-stream'));
+//
         return $streamedResponse;
 
 
     }
+
+
 } 
