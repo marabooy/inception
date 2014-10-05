@@ -105,15 +105,20 @@ class DocumentsController extends \Illuminate\Routing\Controller
                 'body' => $query
             ];
 
-            echo json_encode($elasticClient->search($param)) . PHP_EOL.PHP_EOL;
+            echo json_encode($elasticClient->search($param)) . PHP_EOL . PHP_EOL;
 
             ob_flush();
             flush();
-        },200,array('content-type'=>'text/event-stream'));
+        }, 200, array('content-type' => 'text/event-stream'));
 //
         return $streamedResponse;
 
 
+    }
+
+    public function getReactive()
+    {
+        return  \View::make('inception::visualization.reactive');
     }
 
 
