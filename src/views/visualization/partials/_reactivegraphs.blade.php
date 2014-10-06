@@ -8,7 +8,7 @@
               </div>
                <div class="panel panel-default col-md-6">
                         <div class="panel-body">
-                                    <div id="speed" style="width: 100%; height: 300px">
+                                    <div id="speedometer" style="width: 100%; height: 300px">
                                     </div>
                         </div>
               </div>

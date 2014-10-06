@@ -10,8 +10,8 @@
 
 return array(
     'hosts' => array(
-//        'godeeper.codegladiators.com:9200'
-        'localhost:9200'
+      'godeeper.codegladiators.com:9200'
+      //  'localhost:9200'
     ),
     'logging' => 'true'
 );

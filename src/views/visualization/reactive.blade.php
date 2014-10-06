@@ -17,15 +17,15 @@ Playback Mode
 
 @section('scripts')
 @parent
-<script src="/bower_components/d3/d3.js"></script>
-<script src="/bower_components/nvd3/nv.d3.js"></script>
-<script src="/bower_components/nprogress/nprogress.js"></script>
-<script src="/bower_components/leaflet/dist/leaflet.js"></script>
-<script src="/bower_components/moment/moment.js"></script>
 <script src="/app/js/canvasjs.min.js"></script>
 <script src="/bower_components/papa-parse/papaparse.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/sockjs-client/0.3.4/sockjs.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+{{--<script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.js"></script>--}}
+
+<script src="/bower_components/raphael/raphael-min.js"></script>
+<script src="/bower_components/justgage/justgage.js"></script>
+{{--<script src="/app/js/three.model.js"></script>--}}
 <script src="/app/js/reactive.js"></script>
 <script>
     // Create a client instance
